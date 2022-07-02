@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>View All Product</title>
+    <style>
+        table {
+            margin-top: 20px;
+        }
+        body {
+            background-color: dimgrey;
+        }
+        h1{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">Toy Store</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create">Create new Product</a>
+            </li>
+            {{!-- <li class="nav-item">
+                <a class="nav-link" href="/viewAll">View Products</a>
+            </li> --}}
+        </ul>
+    </nav>
+    <div class="container">
+    <h1 style="text-align: center"><b>All Product</b></h1>
+    <form action="/search" method="post"><b>Search </b> <input type="text" name="txtName">
+    
+        <input type="submit" value="Search">
+    </form>
+    
+    <table id="product-table" class="table-dark table-striped bordered table table-bordered " style="text-align: center">
+        <thead>
+            <tr>
+                <div class="row">
+                <th class="col-2">Product Name</th>
+                <th class="col-2">Price (VND)</th>
+                <th class="col-6">Picture</th>
+                <th class="col-2" colspan="2" style="text-align: center">Edit</th>
+                </div>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td><b>{{name}}</b></td>
+                <td><strong>{{price}}</strong></td>
+                <td><img src="{{picURL}}" width="250" height="300" /></td>
+                <td><button type="button" class="btn btn-warning"><a href="/edit?id={{_id}}">Edit</a></button></td>
+                <td><button type="button" class="btn btn-danger"><a href="/delete?id={{_id}}">Delete</a></button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+        </div>
+</body>
+</html>
